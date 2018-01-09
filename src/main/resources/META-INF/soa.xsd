@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.gengsc.com/schema/soa"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gengsc.com/schema/soa"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <!-- 注册中心 -->
+    <xsd:element name="registry">
+        <xsd:complexType>
+            <xsd:attribute name="protocol" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="address" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 消费者 -->
+    <xsd:element name="reference">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="interface" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="loadbalance" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="protocol" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 协议 -->
+    <xsd:element name="protocol">
+        <xsd:complexType>
+            <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="port" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="host" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="contextPath" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 生产者 -->
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:attribute name="interface" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="ref" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="protocol" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
