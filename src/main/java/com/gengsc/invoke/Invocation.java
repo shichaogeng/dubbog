@@ -17,6 +17,16 @@ public class Invocation {
 
     private ReferenceBean referenceBean;
 
+    private Invoke invoke;
+
+    public Invoke getInvoke() {
+        return invoke;
+    }
+
+    public void setInvoke(Invoke invoke) {
+        this.invoke = invoke;
+    }
+
     public ReferenceBean getReferenceBean() {
         return referenceBean;
     }

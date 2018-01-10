@@ -1,5 +1,9 @@
 package com.gengsc.configbean;
 
+import com.gengsc.cluster.Cluster;
+import com.gengsc.cluster.FailfastCluster;
+import com.gengsc.cluster.FailoverCluster;
+import com.gengsc.cluster.FailsafeCluster;
 import com.gengsc.invoke.*;
 import com.gengsc.loadbalance.LoadBalance;
 import com.gengsc.loadbalance.RandomLoadBalance;
@@ -38,6 +42,26 @@ public class ReferenceBean implements Serializable, FactoryBean, ApplicationCont
     private String loadbalance;
 
     private String protocol;
+
+    private String retries;
+
+    private String cluster;
+
+    public String getRetries() {
+        return retries;
+    }
+
+    public void setRetries(String retries) {
+        this.retries = retries;
+    }
+
+    public String getCluster() {
+        return cluster;
+    }
+
+    public void setCluster(String cluster) {
+        this.cluster = cluster;
+    }
 
     public String getId() {
         return id;
@@ -80,6 +104,7 @@ public class ReferenceBean implements Serializable, FactoryBean, ApplicationCont
 
     private static Map<String, Invoke> invokes = new HashMap<>();
     public static Map<String, LoadBalance> loadBalances = new HashMap<>();
+    public static Map<String, Cluster> clusters = new HashMap<>();
 
     /**
      * 返回一个实例，在spring初始化时由getBean方法调用
@@ -136,6 +161,13 @@ public class ReferenceBean implements Serializable, FactoryBean, ApplicationCont
          */
         loadBalances.put("random", new RandomLoadBalance());
         loadBalances.put("round", new RoundRobinLoadBalance());
+
+        /**
+         * 集群容错方式
+         */
+        clusters.put("failover", new FailoverCluster());
+        clusters.put("failfast", new FailfastCluster());
+        clusters.put("failsafe", new FailsafeCluster());
     }
 
     @Override

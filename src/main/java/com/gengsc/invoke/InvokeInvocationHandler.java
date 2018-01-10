@@ -1,5 +1,6 @@
 package com.gengsc.invoke;
 
+import com.gengsc.cluster.Cluster;
 import com.gengsc.configbean.ReferenceBean;
 
 import java.lang.reflect.InvocationHandler;
@@ -32,7 +33,10 @@ public class InvokeInvocationHandler implements InvocationHandler {
         invocation.setMethod(method);
         invocation.setArgs(args);
         invocation.setReferenceBean(this.referenceBean);
-        Object result = invoke.invoke(invocation);
+        invocation.setInvoke(invoke);
+//        Object result = invoke.invoke(invocation);
+        Cluster cluster = ReferenceBean.clusters.get(referenceBean.getCluster());
+        Object result = cluster.invoke(invocation);
         return result;
     }
 }

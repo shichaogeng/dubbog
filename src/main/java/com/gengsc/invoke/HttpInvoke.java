@@ -15,7 +15,7 @@ import java.util.Map;
 public class HttpInvoke implements Invoke {
 
     @Override
-    public Object invoke(Invocation invocation) {
+    public Object invoke(Invocation invocation) throws Exception{
 
         Map<String, Object> sendMessage = InvokeUtil.getSendMessage(invocation);
         NodeInfo nodeInfo = (NodeInfo) sendMessage.get("nodeInfo");

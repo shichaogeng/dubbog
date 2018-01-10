@@ -14,19 +14,13 @@ import java.util.Map;
 public class NettyInvoke implements Invoke {
 
     @Override
-    public Object invoke(Invocation invocation) {
+    public Object invoke(Invocation invocation) throws Exception {
 
         Map<String, Object> sendMessage = InvokeUtil.getSendMessage(invocation);
         NodeInfo nodeInfo = (NodeInfo) sendMessage.get("nodeInfo");
         JSONObject sendParams = (JSONObject) sendMessage.get("sendParams");
 
-        try {
-            String result = NettyUtil.sendMsg(nodeInfo.getHost(), nodeInfo.getPort(), sendParams.toString());
-            return JSONObject.parse(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        String result = NettyUtil.sendMsg(nodeInfo.getHost(), nodeInfo.getPort(), sendParams.toString());
+        return JSONObject.parse(result);
     }
 }

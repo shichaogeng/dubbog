@@ -15,7 +15,7 @@ import java.util.Map;
 public class RmiInvoke implements Invoke {
 
     @Override
-    public Object invoke(Invocation invocation) {
+    public Object invoke(Invocation invocation) throws Exception {
 
         Map<String, Object> sendMessage = InvokeUtil.getSendMessage(invocation);
         NodeInfo nodeInfo = (NodeInfo) sendMessage.get("nodeInfo");
@@ -24,13 +24,7 @@ public class RmiInvoke implements Invoke {
         //启动客户端
         SoaRmi soaRmi = RmiUtil.startRmiClient(nodeInfo, "soaofrmi");
 
-        try {
-            String result = soaRmi.invoke(sendParams.toJSONString());
-            return JSONObject.parseObject(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        String result = soaRmi.invoke(sendParams.toJSONString());
+        return JSONObject.parseObject(result);
     }
 }

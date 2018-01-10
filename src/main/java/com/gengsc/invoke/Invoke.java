@@ -8,5 +8,5 @@ package com.gengsc.invoke;
 public interface Invoke {
 
     //返回的json对象
-    Object invoke(Invocation invocation);
+    Object invoke(Invocation invocation) throws Exception;
 }
